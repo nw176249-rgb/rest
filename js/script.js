@@ -1,12 +1,11 @@
-/* StayNest interactive functionality */
+/* Shegaon Bhakt Niwas interactive functionality */
 /* ========== START: CONFIGURATION ========== */
-const STAYNEST_CONFIG = {
-  // Owner-provided contact number. Verify ownership and WhatsApp activation before launch.
+const SBN_CONFIG = {
+  // Owner-provided contact number: 88303 37804. Make sure WhatsApp is active on this number.
   // WhatsApp must be international digits only (country code + number, without +).
-  whatsappNumber: "919368253357",
+  whatsappNumber: "918830337804",
   // Phone number in international format.
-  phoneNumber: "+919368253357",
-  // Add confirmed property details in index.html before enabling public location/SEO data.
+  phoneNumber: "+918830337804",
 };
 /* ========== END: CONFIGURATION ========== */
 
@@ -71,15 +70,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ========== START: WHATSAPP LINKS ========== */
   function buildWhatsAppUrl(message) {
-    const number = STAYNEST_CONFIG.whatsappNumber.replace(/\D/g, "");
+    const number = SBN_CONFIG.whatsappNumber.replace(/\D/g, "");
     if (!number) return null;
     return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
   }
   document.querySelectorAll(".js-whatsapp").forEach((link) => {
     const item = link.dataset.item;
     const message = link.dataset.message || (item
-      ? `Hello StayNest, I would like to enquire about ${item}. Please share the current rate, availability, inclusions, and booking details.`
-      : "Hello StayNest, I would like to enquire about accommodation. Please share current rates and availability.");
+      ? `Hello Shegaon Bhakt Niwas, I would like to enquire about ${item}. Please share the current rate, availability, inclusions, and booking details.`
+      : "Hello Shegaon Bhakt Niwas, I would like to enquire about accommodation. Please share current rates and availability.");
     const url = buildWhatsAppUrl(message);
     if (url) {
       link.href = url;
@@ -98,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ========== START: CALL LINKS ========== */
   document.querySelectorAll(".js-call").forEach((link) => {
-    const number = STAYNEST_CONFIG.phoneNumber.trim();
+    const number = SBN_CONFIG.phoneNumber.trim();
     if (number) {
       link.href = `tel:${number.replace(/[^\d+]/g, "")}`;
     } else {
@@ -197,7 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     const values = new FormData(form);
     const message = [
-      "Hello StayNest, I would like to enquire about a stay.",
+      "Hello Shegaon Bhakt Niwas, I would like to enquire about a stay.",
       `Name: ${values.get("name")}`,
       `Phone: ${values.get("phone")}`,
       values.get("email") ? `Email: ${values.get("email")}` : "",
@@ -217,6 +216,28 @@ document.addEventListener("DOMContentLoaded", () => {
     window.open(url, "_blank", "noopener,noreferrer");
   });
   /* ========== END: FORM VALIDATION ========== */
+
+  /* ========== START: PREMIUM SCROLL EFFECTS ========== */
+  const progress = document.getElementById("scroll-progress");
+  function updateProgress() {
+    if (!progress) return;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.transform = `scaleX(${max > 0 ? Math.min(window.scrollY / max, 1) : 0})`;
+  }
+  window.addEventListener("scroll", updateProgress, { passive: true });
+  updateProgress();
+
+  const revealTargets = document.querySelectorAll(".highlight-item, .about-grid > *, .section-heading, .room-card, .service-card, .why-grid article, .cta-inner > *, .faq-layout > *, .contact-grid > *, .footer-grid > div");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if ("IntersectionObserver" in window && !reduceMotion) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) { entry.target.classList.add("in"); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    revealTargets.forEach((el, i) => { el.classList.add("reveal"); el.style.setProperty("--d", `${(i % 4) * 70}ms`); io.observe(el); });
+  }
+  /* ========== END: PREMIUM SCROLL EFFECTS ========== */
 
   /* ========== START: BACK-TO-TOP / FOOTER YEAR ========== */
   const year = document.getElementById("current-year");

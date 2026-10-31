@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-# Replace with the verified production sitemap URL before publishing.
-Sitemap: https://YOUR-DOMAIN.example/sitemap.xml
+# Replace with your real production sitemap URL.
+Sitemap: https://www.shegaonbhaktniwas.in/sitemap.xml
