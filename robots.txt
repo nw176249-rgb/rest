@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.shegaonbhaktniwas.online/sitemap.xml
+Sitemap: https://shegaonbhaktaniwas.online/sitemap.xml
