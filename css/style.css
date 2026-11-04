@@ -651,10 +651,37 @@ h2 em,h1 em{background:var(--gold-grad);-webkit-background-clip:text;background-
 .form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(224,154,31,.18)}
 
 /* Footer */
-.site-footer{background:linear-gradient(180deg,#0A2150,#061638);border-top:4px solid transparent;border-image:var(--gold-grad) 1}
+/* ========== START: FOOTER SECTION STYLES ========== */
+.site-footer{background:linear-gradient(180deg,#0A2150,#061638);border-top:4px solid transparent;border-image:var(--gold-grad) 1;color:rgba(255,255,255,.82)}
 .brand-footer img{height:190px;filter:drop-shadow(0 8px 24px rgba(0,0,0,.35))}
-.footer-grid h3{font-family:var(--serif);font-size:1.35rem;color:var(--gold-2)}
+
+/* h2.footer-title replaces the old h3 (SEO heading order), so style it the same way */
+.footer-grid h2,
+.footer-grid h3,
+.footer-grid .footer-title{
+  font-family:var(--serif);
+  font-size:1.35rem;
+  line-height:1.3;
+  font-weight:700;
+  letter-spacing:0;
+  text-transform:none;
+  color:var(--gold-2);
+  margin:0 0 14px;
+}
+
+.footer-grid>*{min-width:0}
+.footer-grid a,
+.footer-grid p{overflow-wrap:anywhere}
+.footer-grid nav{display:flex;flex-direction:column;align-items:flex-start}
 .footer-bottom .hindi{color:var(--gold-2)}
+
+@media (max-width:600px){
+  .brand-footer img{height:140px}
+  .footer-grid h2,
+  .footer-grid h3,
+  .footer-grid .footer-title{font-size:1.2rem}
+}
+/* ========== END: FOOTER SECTION STYLES ========== */
 
 /* Floating buttons */
 .float-whatsapp{background:linear-gradient(135deg,#2EE07A,#17A955)}
